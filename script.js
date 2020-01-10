@@ -4,7 +4,7 @@ var gameContainer = document.getElementById("game");
 for (rows = 0; rows < 5; rows++) {
     var div = document.createElement("div");
         gameContainer.appendChild(div);
-        div.setAttribute("class", `row_${rows}`);
+        div.setAttribute("class", `row_${rows+1}`);
 
     for (i = 0; i < 5; i++) {
         var p = document.createElement("p");
@@ -18,6 +18,7 @@ for (rows = 0; rows < 5; rows++) {
             p.style.textAlign = "center";
 
             p.setAttribute("class", "default");
+            p.setAttribute("id", `${i + 1}`)
             
             div.appendChild(p);
     }
@@ -29,6 +30,16 @@ var button = document.getElementById("button");
 
 function checkInput(event) {
     var letters = event.value.split("");
-    console.log(letters);
+        console.log(letters);
 }
 
+function gameloop() {
+    var random = words[Math.floor(Math.random() * words.length)];
+        console.log(random);
+
+    var firstLetter = document.getElementById(1);
+        firstLetter.innerText = random[0];
+        // firstLetter.toUpperCase();
+}
+
+gameloop();
