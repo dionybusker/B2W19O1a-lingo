@@ -1,12 +1,14 @@
 var gameContainer = document.getElementById("game");
+    gameContainer.style.width = "485px";
 
-for (rows = 1; rows <= 5; rows++) {
+for (rows = 0; rows < 5; rows++) {
     var div = document.createElement("div");
         gameContainer.appendChild(div);
+        div.setAttribute("class", `row_${rows}`);
 
-    for (i = 1; i <= 25; i++) {
+    for (i = 0; i < 5; i++) {
         var p = document.createElement("p");
-            p.innerText = i;
+            // p.innerText = i + 1;
             p.style.border = "1px solid black";
             p.style.width = "75px";
             p.style.height = "50px";
@@ -16,12 +18,17 @@ for (rows = 1; rows <= 5; rows++) {
             p.style.textAlign = "center";
 
             p.setAttribute("class", "default");
-
-            gameContainer.appendChild(p);
+            
+            div.appendChild(p);
     }
-
-    div.setAttribute("class", `row${rows}`)
-
 }
 
+var input = document.getElementById("input");
+var button = document.getElementById("button");
+    button.setAttribute("onclick", "checkInput(input)");
+
+function checkInput(event) {
+    var letters = event.value.split("");
+    console.log(letters);
+}
 
