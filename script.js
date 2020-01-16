@@ -18,7 +18,7 @@ for (rows = 0; rows < 5; rows++) {
             p.style.textAlign = "center";
 
             p.setAttribute("class", "default");
-            p.setAttribute("id", `${i + 1}`)
+            p.setAttribute("id", `letter_${i + 1}`)
             
             div.appendChild(p);
     }
@@ -28,18 +28,56 @@ var input = document.getElementById("input");
 var button = document.getElementById("button");
     button.setAttribute("onclick", "checkInput(input)");
 
+var randomWord = words[Math.floor(Math.random() * words.length)];
+    console.log(randomWord);
+
+// var word = document.getElementsByClassName(`row_${i}`).value;
+var guess = document.getElementById("input").value;
+
+var wordArray = randomWord.split("");
+var guessArray = guess.split("");
+
 function checkInput(event) {
     var letters = event.value.split("");
         console.log(letters);
 }
 
 function gameloop() {
-    var random = words[Math.floor(Math.random() * words.length)];
-        console.log(random);
 
-    var firstLetter = document.getElementById(1);
-        firstLetter.innerText = random[0];
+
+    var firstLetter = document.getElementById(`letter_${1}`);
+        firstLetter.innerText = randomWord[0];
         // firstLetter.toUpperCase();
+
+    for (var i = 0; i < guessArray.length; i++) {
+        if (guessArray[i] == wordArray[i]) {
+            var position = document.getElementById(`letter_${i + 1}`);
+                position.style.backgroundColor = "green";
+                position.innerText = guessArray[i];
+
+            wordArray[i] = null;
+            guessArray[i] = null;
+        }
+    }
+
+    for (var i = 0; i < guessArray.length; i++) {
+        if (guessArray[i] != null) {
+            if (wordArray.indexOf(guessArray[i]) != -1) {
+                var position = document.getElementById(`letter_${i + 1}`);
+                    position.style.backgroundColor = "green";
+                    position.innerText = guessArray[i];
+
+                var pos = wordArray.indexOf(guessArray[i]);
+                guessArray[i] = null;
+                wordArray[pos] = null;
+            }
+
+            wordArray[i] = null;
+            guessArray[i] = null;
+        }
+    }
+    console.log(wordArray);
+    console.log(guessArray);
 }
 
 gameloop();
