@@ -11,7 +11,7 @@ for (rows = 0; rows < 5; rows++) {
             // p.innerText = i + 1;
             p.style.border = "1px solid black";
             p.style.width = "75px";
-            p.style.height = "50px";
+            p.style.height = "75px";
             p.style.margin = "10px";
             p.style.fontSize = "50px";
             p.style.display = "inline-block";
@@ -24,31 +24,33 @@ for (rows = 0; rows < 5; rows++) {
     }
 }
 
-var input = document.getElementById("input");
+// var input = document.getElementById("input");
 var button = document.getElementById("button");
-    button.setAttribute("onclick", "checkInput(input)");
+    button.setAttribute("onclick", "check()");
 
-var randomWord = words[Math.floor(Math.random() * words.length)];
+var randomWord = "kaart";
+// var randomWord = words[Math.floor(Math.random() * words.length)];
     console.log(randomWord);
 
 // var word = document.getElementsByClassName(`row_${i}`).value;
-var guess = document.getElementById("input").value;
-
-var wordArray = randomWord.split("");
-var guessArray = guess.split("");
-
-function checkInput(event) {
-    var letters = event.value.split("");
-        console.log(letters);
-}
-
-function gameloop() {
 
 
-    var firstLetter = document.getElementById(`letter_${1}`);
-        firstLetter.innerText = randomWord[0];
-        // firstLetter.toUpperCase();
+// function checkInput(event) {
+//     var letters = event.value.split("");
+//         console.log(letters);
+// }
 
+var firstLetter = document.getElementById(`letter_${1}`);
+    firstLetter.innerText = randomWord[0];
+    // firstLetter.toUpperCase();
+
+function check() {
+
+    var guess = document.getElementById("input").value;
+
+    var wordArray = randomWord.split("");
+    var guessArray = guess.split("");
+    
     for (var i = 0; i < guessArray.length; i++) {
         if (guessArray[i] == wordArray[i]) {
             var position = document.getElementById(`letter_${i + 1}`);
@@ -64,7 +66,7 @@ function gameloop() {
         if (guessArray[i] != null) {
             if (wordArray.indexOf(guessArray[i]) != -1) {
                 var position = document.getElementById(`letter_${i + 1}`);
-                    position.style.backgroundColor = "green";
+                    position.style.backgroundColor = "yellow";
                     position.innerText = guessArray[i];
 
                 var pos = wordArray.indexOf(guessArray[i]);
@@ -74,10 +76,14 @@ function gameloop() {
 
             wordArray[i] = null;
             guessArray[i] = null;
+
+
         }
+        // var nextRow = document.getElementsByClassName(`row_${i}`);
+        //     nextRow = nextRow + 1;
     }
+
     console.log(wordArray);
     console.log(guessArray);
 }
 
-gameloop();
