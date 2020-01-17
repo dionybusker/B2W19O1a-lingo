@@ -73,11 +73,6 @@ function check() {
                 guessArray[i] = null;
                 wordArray[pos] = null;
             }
-
-            wordArray[i] = null;
-            guessArray[i] = null;
-
-
         }
         // var nextRow = document.getElementsByClassName(`row_${i}`);
         //     nextRow = nextRow + 1;
