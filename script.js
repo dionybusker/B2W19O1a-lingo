@@ -1,4 +1,3 @@
-// var randomWord = "kaart";
 var randomWord = words[Math.floor(Math.random() * words.length)];
     console.log(randomWord);
 
@@ -24,11 +23,10 @@ var gameDiv = document.createElement("div");
     gameContainer.appendChild(gameDiv);
 
 
-for (var i = 0; i < 5; i++) {
+for (var i = 0; i < 6; i++) {
     var row = document.createElement("div");
-        // gameDiv.appendChild(row);
-        row.setAttribute("class", "row");
-        // row.setAttribute("id", `row_${i+1}`)
+        row.setAttribute("id", `row_${i}`);
+        row.setAttribute("class", "all-rows");
 
     for (var j = 0; j < 5; j++) {
         var letterBox = document.createElement("p");
@@ -47,7 +45,7 @@ var input = document.createElement("input");
     gameContainer.appendChild(input);
 
 var button = document.createElement("button");
-    button.setAttribute("onclick", "check()");
+    button.setAttribute("onclick", "count(beurt)");
     button.innerText = "spelen";
     gameContainer.appendChild(button);
 
@@ -56,11 +54,31 @@ var wordArray = randomWord.split("");
     document.getElementById("row_0-letter_0").innerText = wordArray[0];
 
 
+
+
+function count(beurt) {
+    if (beurt >= 5) {
+        for (var i = 0; i < 5; i++) {
+            var answer = document.getElementById(`row_5-letter_${i}`);
+                answer.style.visibility = "visible";
+                answer.style.backgroundColor = "#ff8000";
+                answer.style.border = "5px solid black";
+        }
+        wordArray.forEach(function(value, index) {
+            document.getElementById(`row_${beurt}-letter_${index}`).innerText = wordArray[index];
+        })
+        alert("Helaas, je hebt het niet geraden!");
+    } else {
+        check();
+    }
+}
+
+
 function check() {
     var wordArrayCopy = wordArray.slice(0);
     var guess = input.value;
     var guessArray = guess.split("");
-    
+
     // "The forEach() method calls a function once for each element in an array, in order." - W3Schools
     guessArray.forEach(function(value, index) {
         document.getElementById(`row_${beurt}-letter_${index}`).innerText = value;
@@ -82,8 +100,11 @@ function check() {
         }
     })
 
+
     console.log(wordArrayCopy);
     console.log(guessArray);
     beurt++;
+
+    
 }
 
