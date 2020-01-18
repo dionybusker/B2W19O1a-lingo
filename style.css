@@ -9,7 +9,7 @@ body {
     background-color: white;
 }
 
-.rows {
+.row {
     display: flex;
     justify-content: space-between;
 }
