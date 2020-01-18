@@ -9,7 +9,7 @@ body {
     background-color: white;
 }
 
-.row {
+.all-rows {
     display: flex;
     justify-content: space-between;
 }
@@ -46,4 +46,9 @@ button {
     font-size: 50px;
     display: inline-block;
     text-align: center;
+}
+
+#row_5 > .default {
+    background-color: black;
+    visibility: hidden;
 }
