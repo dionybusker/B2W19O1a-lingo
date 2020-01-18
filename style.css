@@ -3,21 +3,47 @@ body {
     font-family: Calibri, Arial;
 }
 
-#grid-container {
-    display: grid;
-    grid-template-areas: 'header header'
-                         'info info'
-                         'game game'
-                         'input button';
-    grid-template-rows: minmax(50px, auto);
-    grid-template-columns: repeat(2, 1fr);
+#game-container {
     margin: 0 auto;
     width: 485px;
     background-color: white;
 }
 
-#header { grid-area: header; margin: 10px; }
-#info { grid-area: info; margin: 10px; }
-#game { grid-area: game; margin: 0 auto; }
-#input { grid-area: input; width: 200px; margin: 10px; padding: 10px; }
-#button { grid-area: button; width: 150px; margin: 10px; }
+.rows {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    margin: 10px;
+}
+
+p {
+    margin: 10px;
+}
+
+#game {
+    margin: 0 auto;
+}
+
+#input {
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+}
+
+button {
+    width: 150px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.default {
+    border: 1px solid black;
+    width: 75px;
+    height: 75px;
+    margin: 10px;
+    font-size: 50px;
+    display: inline-block;
+    text-align: center;
+}
