@@ -1,7 +1,7 @@
 body {
     /* background-color: lightblue; */
     font-family: Calibri, Arial;
-    background-image: url(lingo.jpg);
+    background-image: url(../img/lingo.jpg);
     background-position: center;
     background-size: cover;
 }
