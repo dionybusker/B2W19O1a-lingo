@@ -1,17 +1,21 @@
 body {
-    background-color: lightblue;
+    /* background-color: lightblue; */
     font-family: Calibri, Arial;
+    background-image: url(lingo.jpg);
+    background-position: center;
+    background-size: cover;
 }
 
 #game-container {
     margin: 0 auto;
     width: 485px;
     background-color: white;
+    opacity: 0.8;
 }
 
 .all-rows {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 h1 {
@@ -40,15 +44,15 @@ button {
 
 .default {
     border: 1px solid black;
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
     margin: 10px;
-    font-size: 50px;
+    font-size: 45px;
     display: inline-block;
     text-align: center;
+    border-radius: 10px;
 }
 
 #row_5 > .default {
-    background-color: black;
     visibility: hidden;
 }
