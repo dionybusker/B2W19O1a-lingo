@@ -1,5 +1,4 @@
 var randomWord = words[Math.floor(Math.random() * words.length)];
-    console.log(randomWord);
 
 var beurt = 0;
 
@@ -9,6 +8,16 @@ var gameContainer = document.createElement("div");
     gameContainer.setAttribute("id", "game-container");
     gameContainer.style.width = "485px";
     body.appendChild(gameContainer);
+
+var username = prompt("Vul je naam in");
+var devMode = document.createElement("p");
+    devMode.style.textAlign = "right";
+    devMode.innerText = `speler: ${username}`;
+    gameContainer.appendChild(devMode);
+
+    if (username == "!diony") {
+        console.log(randomWord);
+    }
 
 var h1 = document.createElement("h1");
     h1.innerText = "Lingo";
@@ -46,14 +55,12 @@ var input = document.createElement("input");
 
 var button = document.createElement("button");
     button.setAttribute("onclick", "count(beurt)");
-    button.innerText = "spelen";
+    button.innerText = "Spelen";
     gameContainer.appendChild(button);
 
 
 var wordArray = randomWord.split("");
     document.getElementById("row_0-letter_0").innerText = wordArray[0];
-
-
 
 
 function count(beurt) {
@@ -65,27 +72,36 @@ function count(beurt) {
                 answer.style.border = "5px solid black";
         }
         wordArray.forEach(function(value, index) {
-            document.getElementById(`row_${beurt}-letter_${index}`).innerText = wordArray[index];
+            document.getElementById(`row_${beurt}-letter_${index}`).innerText = value;
         })
-        alert("Helaas, je hebt het niet geraden!");
+        alert("Helaas, je hebt het woord niet geraden!");
+        gameContainer.removeChild(input);
+        button.innerText = "Opnieuw spelen?";
+        button.setAttribute("onclick", "reset()");
     } else {
         check();
     }
 }
 
+var correct = 0;
 
 function check() {
     var wordArrayCopy = wordArray.slice(0);
     var guess = input.value;
     var guessArray = guess.split("");
+    correct = 0;
 
     // "The forEach() method calls a function once for each element in an array, in order." - W3Schools
     guessArray.forEach(function(value, index) {
         document.getElementById(`row_${beurt}-letter_${index}`).innerText = value;
         if (value == wordArrayCopy[index]) {
             document.getElementById(`row_${beurt}-letter_${index}`).style.backgroundColor = "green";
+
+            correct++;
+            
             document.getElementById(`row_${beurt}-letter_${index}`).innerText = value;
             guessArray[index] = wordArrayCopy[index] = null;
+
         }
     })
 
@@ -93,6 +109,7 @@ function check() {
         if (value != null) {
             if (wordArrayCopy.indexOf(value) > -1) {
                 document.getElementById(`row_${beurt}-letter_${index}`).style.backgroundColor = "yellow";
+                document.getElementById(`row_${beurt}-letter_${index}`).style.borderRadius = "50%";
                 document.getElementById(`row_${beurt}-letter_${index}`).innerText = value;
                 wordArrayCopy[wordArrayCopy.indexOf(value)] = guessArray[index] = null;
                 guessArray[index] = null;
@@ -100,11 +117,23 @@ function check() {
         }
     })
 
+    if (username === "!diony") {
+        console.log(wordArrayCopy);
+        console.log(guessArray);    
+    }
 
-    console.log(wordArrayCopy);
-    console.log(guessArray);
+    document.getElementById("input").value = "";
     beurt++;
 
-    
+    if (correct == 5) {
+        alert("Goed gedaan, je hebt het woord geraden!");
+        gameContainer.removeChild(input);
+        button.innerText = "Opnieuw spelen?";
+        button.setAttribute("onclick", "reset()");
+    }
+
 }
 
+function reset() {
+    location.reload();
+}
